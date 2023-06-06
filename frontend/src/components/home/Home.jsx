@@ -9,6 +9,7 @@ export default function Home(props) {
 
 
     let fetchData =  () => {
+        if (navigator.onLine) {    
             if(props.stack.length > 0)
             {
                 axios.post(import.meta.env.VITE_WEATHER_API_URL,
@@ -33,6 +34,9 @@ export default function Home(props) {
             else{
                 props.setAlert("Please enter city name")
             }
+        } else {
+            props.setAlert("You are offline check your connection");
+          }
     }
 
 

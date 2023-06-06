@@ -33,7 +33,7 @@ function App() {
   }
 
   let detectTheme = () => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setDarkMode()
       document.body.classList.add("dark")
     }
@@ -56,11 +56,18 @@ function App() {
   let push = () => {
     if (city.match(/[a-zA-Z]/)) {
       if (stack.length != 5) {
-        setStack(oldArray => [...oldArray, city.trim()])
+        if(!stack.includes(city.toLowerCase()))
+        {
+          setStack(oldArray => [...oldArray, city.trim()])
         setcity("")
+        }
+        else
+        {
+          setAlert("City name is already in stack")
+        }
       }
       else {
-        setAlert("City stack is full only 5 cities are allowed")
+        setAlert("Stack is full only 5 cities are allowed")
       }
 
     }
