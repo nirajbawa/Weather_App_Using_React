@@ -49,7 +49,7 @@ function App() {
     setOpen(true)
     setTimeout(() => {
       setOpen(false)
-    }, 5000);
+    }, 7000);
   }
 
 
