@@ -6,7 +6,7 @@ import {
 import Navbar from './components/navbar/Navbar'
 import Home from './components/home/Home'
 import App_Alert from './components/alert/App_Alert'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
@@ -17,15 +17,14 @@ function App() {
   let [message, setMessage] = useState("")
   let [mode, setMode] = useState(false)
 
-
+ 
 
   let setDarkMode = () => {
-    if(mode==false)
-    {
+    if (mode == false) {
       setMode(true)
       document.body.classList.add("dark")
     }
-    else{
+    else {
       setMode(false)
       document.body.classList.remove("dark")
     }
@@ -33,16 +32,16 @@ function App() {
   }
 
   let detectTheme = () => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode()
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add("dark")
+      setMode(true)
     }
   }
 
- 
-  document.body.onload = () =>{
+  useEffect(() => {
     detectTheme();
-  }
+  },[])
+   
 
   let setAlert = (msg) => {
     setMessage(msg)
@@ -56,13 +55,11 @@ function App() {
   let push = () => {
     if (city.match(/[a-zA-Z]/)) {
       if (stack.length != 5) {
-        if(!stack.includes(city.toLowerCase()))
-        {
-          setStack(oldArray => [...oldArray, city.trim()])
-        setcity("")
+        if (!stack.includes(city.toLowerCase())) {
+          setStack(oldArray => [city.trim(), ...oldArray])
+          setcity("")
         }
-        else
-        {
+        else {
           setAlert("City name is already in stack")
         }
       }
@@ -80,7 +77,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar city={city} setcity={setcity} stack={stack} setStack={setStack} push={push} setDarkMode={setDarkMode}/>
+        <Navbar city={city} setcity={setcity} stack={stack} setStack={setStack} push={push} setDarkMode={setDarkMode} mode={mode} />
         <Routes>
           <Route exact path="/" element={<Home city={city} setcity={setcity} stack={stack} setStack={setStack} push={push} setAlert={setAlert} />} />
         </Routes>

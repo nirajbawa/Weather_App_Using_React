@@ -10,7 +10,7 @@ export default function Navbar(props) {
     <nav className="w-full px-3 py-7 lg:py-12 md:px-10 lg:px-28  flex justify-between flex-wrap gap-5 dark:bg-[#0f172a]">
 
 
-      <Nav_Title setDarkMode={props.setDarkMode}/>
+      <Nav_Title setDarkMode={props.setDarkMode} mode={props.mode}/>
       <Nav_Support_Btn  />
       <Nav_Search props={props}/>
 
