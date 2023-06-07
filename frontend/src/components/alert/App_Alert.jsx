@@ -10,7 +10,6 @@ export default function App_Alert(props) {
     color="red"
     open={props.open}
     icon={<ExclamationTriangleIcon className="h-6 w-6" />}
-    open={props.open}
 
     className=" md:w-2/4 lg:w-1/3"
 
