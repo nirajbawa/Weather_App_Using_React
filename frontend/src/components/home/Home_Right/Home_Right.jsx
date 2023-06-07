@@ -27,7 +27,7 @@ export default function Home_Right(props) {
 
             let result = findCaseInsensitiveMatch(props.props.stack, value.city)
             if (result.toLowerCase() == "true") {
-              return <Home_item name={value.city} temp={value.temp} humidity={value.humidity} Visibility={value.Visibility} windSpeed={value.windSpeed} img={value.img} key={index} />
+              return <Home_item name={value.city} temp={value.temp} humidity={value.humidity} Visibility={value.visibility} windSpeed={value.windspeed} img={value.img} key={index} />
             }
           })
         }
